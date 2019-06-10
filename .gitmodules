@@ -1,6 +1,6 @@
 [submodule "test/3d-cubes-01"]
 	path = test/3d-cubes-01
 	url = https://github.com/CalebBabin/3d-cubes-01
-[submodule "dist/gravity"]
-	path = dist/gravity
+[submodule "test/gravity"]
+	path = test/gravity
 	url = https://github.com/CalebBabin/layered-canvas-fun/
