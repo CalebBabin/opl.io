@@ -4,3 +4,6 @@
 [submodule "test/gravity"]
 	path = test/gravity
 	url = https://github.com/CalebBabin/layered-canvas-fun/
+[submodule "random"]
+	path = random
+	url = https://github.com/CalebBabin/opl-random
