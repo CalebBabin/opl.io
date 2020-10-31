@@ -1,9 +1,0 @@
-[submodule "test/3d-cubes-01"]
-	path = test/3d-cubes-01
-	url = https://github.com/CalebBabin/3d-cubes-01
-[submodule "test/gravity"]
-	path = test/gravity
-	url = https://github.com/CalebBabin/layered-canvas-fun/
-[submodule "random"]
-	path = random
-	url = https://github.com/CalebBabin/opl-random

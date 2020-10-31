@@ -1,0 +1,25 @@
+{
+  "name": "opl.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build src/*.html src/**/*.html",
+    "start": "parcel src/*.html src/**/*.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calebbabin/opl.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calebbabin/opl.io/issues"
+  },
+  "homepage": "https://github.com/calebbabin/opl.io#readme",
+  "dependencies": {
+    "parcel": "^1.12.4",
+    "sass": "^1.28.0"
+  }
+}
