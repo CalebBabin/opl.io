@@ -152,17 +152,17 @@ shader(`
 		// Use the noise function
 		float n = snoise(vec3(st, u_time / 100.0));
 
-		brightness += smooth(0.00, 0.002, n);
-		brightness += smooth(0.10, 0.102, n);
-		brightness += smooth(0.20, 0.202, n);
-		brightness += smooth(0.30, 0.302, n);
-		brightness += smooth(0.40, 0.402, n);
-		brightness += smooth(0.50, 0.502, n);
-		brightness += smooth(0.60, 0.602, n);
-		brightness += smooth(0.70, 0.702, n);
-		brightness += smooth(0.80, 0.802, n);
-		brightness += smooth(0.90, 0.902, n);
-		brightness += smooth(0.99, 0.992, n);
+		brightness += smooth(0.00, 0.003, n);
+		brightness += smooth(0.10, 0.103, n);
+		brightness += smooth(0.20, 0.203, n);
+		brightness += smooth(0.30, 0.303, n);
+		brightness += smooth(0.40, 0.403, n);
+		brightness += smooth(0.50, 0.503, n);
+		brightness += smooth(0.60, 0.603, n);
+		brightness += smooth(0.70, 0.703, n);
+		brightness += smooth(0.80, 0.803, n);
+		brightness += smooth(0.90, 0.903, n);
+		brightness += smooth(0.99, 0.993, n);
 		gl_FragColor = vec4(
 			brightness
 		);
