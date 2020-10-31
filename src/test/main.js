@@ -8,9 +8,9 @@ function resize() {
 }
 window.addEventListener('resize', resize);
 
-let gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-var h = gl.drawingBufferHeight;
-var w = gl.drawingBufferWidth;
+let gl = canvas.getContext('webgl', { antialias: true }) || canvas.getContext('experimental-webgl', { antialias: true });
+let h = gl.drawingBufferHeight;
+let w = gl.drawingBufferWidth;
 
 let pid = gl.createProgram();
 shader(`
@@ -22,7 +22,7 @@ shader(`
 `, gl.VERTEX_SHADER);
 shader(`
 	#ifdef GL_ES
-	precision highp float;
+	precision lowp float;
 	#endif
 	uniform float width;
 	uniform float height;
@@ -149,19 +149,19 @@ shader(`
 		vec2 pos = vec2(st*4.0);
 
 		// Use the noise function
-		float n = snoise(vec3(st, u_time / 100.0));
+		float n = snoise(vec3(gl_FragCoord.xy * 0.001, u_time / 100.0));
 
-		brightness += smooth(0.00, 0.003, n);
-		brightness += smooth(0.10, 0.103, n);
-		brightness += smooth(0.20, 0.203, n);
-		brightness += smooth(0.30, 0.303, n);
-		brightness += smooth(0.40, 0.403, n);
-		brightness += smooth(0.50, 0.503, n);
-		brightness += smooth(0.60, 0.603, n);
-		brightness += smooth(0.70, 0.703, n);
-		brightness += smooth(0.80, 0.803, n);
-		brightness += smooth(0.90, 0.903, n);
-		brightness += smooth(0.99, 0.993, n);
+		brightness += smooth(0.00, 0.01, n);
+		brightness += smooth(0.10, 0.11, n);
+		brightness += smooth(0.20, 0.21, n);
+		brightness += smooth(0.30, 0.31, n);
+		brightness += smooth(0.40, 0.41, n);
+		brightness += smooth(0.50, 0.51, n);
+		brightness += smooth(0.60, 0.61, n);
+		brightness += smooth(0.70, 0.71, n);
+		brightness += smooth(0.80, 0.81, n);
+		brightness += smooth(0.90, 0.91, n);
+
 		gl_FragColor = vec4(
 			brightness
 		);
@@ -187,7 +187,6 @@ gl.enableVertexAttribArray(al);
 const timeLocation = gl.getUniformLocation(pid, "u_time");
 const widthLocation = gl.getUniformLocation(pid, "width");
 const heightLocation = gl.getUniformLocation(pid, "height");
-
 
 function draw(time) {
 	window.requestAnimationFrame(draw);
