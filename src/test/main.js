@@ -1,5 +1,4 @@
 const canvas = document.createElement('canvas');
-canvas.classList.add('background-canvas');
 
 function resize() {
 	canvas.width = window.innerWidth * devicePixelRatio;
