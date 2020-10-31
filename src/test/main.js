@@ -23,7 +23,7 @@ shader(`
 `, gl.VERTEX_SHADER);
 shader(`
 	#ifdef GL_ES
-	precision mediump float;
+	precision highp float;
 	#endif
 	uniform float width;
 	uniform float height;
