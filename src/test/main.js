@@ -188,12 +188,13 @@ const timeLocation = gl.getUniformLocation(pid, "u_time");
 const widthLocation = gl.getUniformLocation(pid, "width");
 const heightLocation = gl.getUniformLocation(pid, "height");
 
+const timeOffset = Math.random() * -300000;
 function draw(time) {
 	window.requestAnimationFrame(draw);
 	gl.viewport(0, 0, w, h);
 	gl.clearColor(0, 0, 0, 0);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-	gl.uniform1f(timeLocation, time / 1000);
+	gl.uniform1f(timeLocation, time / 1000 + timeOffset);
 	gl.uniform1f(widthLocation, h);
 	gl.uniform1f(heightLocation, w);
 	gl.useProgram(pid);
