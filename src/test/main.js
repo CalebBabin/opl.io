@@ -187,7 +187,11 @@ const timeLocation = gl.getUniformLocation(pid, "u_time");
 const widthLocation = gl.getUniformLocation(pid, "width");
 const heightLocation = gl.getUniformLocation(pid, "height");
 
-const timeOffset = Math.random() * -300000;
+function easeInOutQuint(t) {
+	return t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t;
+}
+
+let timeOffset = 0;
 function draw(time) {
 	window.requestAnimationFrame(draw);
 	gl.viewport(0, 0, w, h);
@@ -198,6 +202,14 @@ function draw(time) {
 	gl.uniform1f(heightLocation, w);
 	gl.useProgram(pid);
 	gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+	if (randomizing) {
+		const diff = endTime - startTime;
+		timeOffset = startTime + diff * easeInOutQuint((Date.now() - randomizing) / randomizing_length);
+	}
+	if (randomizing < Date.now() - randomizing_length) {
+		randomizing = false;
+	}
 }
 
 function shader(src, type) {
@@ -218,3 +230,17 @@ window.requestAnimationFrame(draw);
 window.addEventListener('DOMContentLoaded', () => {
 	document.body.appendChild(canvas);
 })
+
+
+let startTime = 0;
+let endTime = 0;
+let randomizing = false;
+const randomizing_length = 2000;
+function randomizeTime() {
+	if (randomizing) return;
+	startTime = timeOffset;
+	const rand = Math.random() * -300000
+	endTime = Math.max(timeOffset - 1000, Math.min(rand, timeOffset + 1000));
+	randomizing = Date.now();
+}
+window.addEventListener('click', randomizeTime);
