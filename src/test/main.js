@@ -21,7 +21,7 @@ shader(`
 	}
 `, gl.VERTEX_SHADER);
 shader(`
-	precision mediump float;
+	precision highp float;
 
 	uniform float width;
 	uniform float height;
@@ -137,6 +137,7 @@ shader(`
 			) * 3.14
 		);
 	}
+
 	void main() {
 		// Normalized position
 		// vec2 npos = gl_FragCoord.xy / vec2(width, height);
@@ -145,10 +146,10 @@ shader(`
 		vec2 st = ( gl_FragCoord.xy ) / vec2( max(width, height), max(width, height) );
 		// Scale the coordinate system to see
 		// some noise in action
-		vec2 pos = vec2(st*4.0);
+		vec2 pos = vec2(st*3.0);
 
 		// Use the noise function
-		float n = snoise(vec3(st * 3.0, u_time / 100.0));
+		float n = snoise(vec3(pos, u_time / 100.0));
 
 		brightness += smooth(0.00, 0.01, n);
 		brightness += smooth(0.10, 0.11, n);
@@ -191,7 +192,7 @@ function easeInOutQuint(t) {
 	return t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t;
 }
 
-let timeOffset = 0;
+let timeOffset = Math.random() * -300000;
 function draw(time) {
 	window.requestAnimationFrame(draw);
 	gl.viewport(0, 0, w, h);
@@ -239,7 +240,7 @@ const randomizing_length = 2000;
 function randomizeTime() {
 	if (randomizing) return;
 	startTime = timeOffset;
-	const rand = Math.random() * -300000
+	const rand = Math.random() * -300000;
 	endTime = Math.max(timeOffset - 1000, Math.min(rand, timeOffset + 1000));
 	randomizing = Date.now();
 }
