@@ -21,9 +21,8 @@ shader(`
 	}
 `, gl.VERTEX_SHADER);
 shader(`
-	#ifdef GL_ES
-	precision lowp float;
-	#endif
+	precision mediump float;
+
 	uniform float width;
 	uniform float height;
 	uniform float u_time;
@@ -149,7 +148,7 @@ shader(`
 		vec2 pos = vec2(st*4.0);
 
 		// Use the noise function
-		float n = snoise(vec3(gl_FragCoord.xy * 0.001, u_time / 100.0));
+		float n = snoise(vec3(st * 3.0, u_time / 100.0));
 
 		brightness += smooth(0.00, 0.01, n);
 		brightness += smooth(0.10, 0.11, n);
